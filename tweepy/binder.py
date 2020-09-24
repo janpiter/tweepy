@@ -236,7 +236,7 @@ def bind_api(**config):
             # Parse the response payload
             self.return_cursors = (self.return_cursors or
                                    'cursor' in self.session.params or 'next' in self.session.params)
-            result = self.parser.parse(self, resp.text, return_cursors=self.return_cursors)
+            result = self.parser.parse(self, resp.text.encode('utf-8'), return_cursors=self.return_cursors)
 
             # Store result into cache if one is available.
             if self.use_cache and self.api.cache and self.method == 'GET' and result:
